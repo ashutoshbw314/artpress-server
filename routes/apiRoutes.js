@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const Product = require("../models/Product");
-var admin = require("firebase-admin");
 
 router.post("/product", async (req, res) => {
   console.log(req.body)
