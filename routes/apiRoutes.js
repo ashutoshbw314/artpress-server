@@ -21,8 +21,12 @@ router.post("/product", async (req, res) => {
 });
 
 router.get("/products/all", async (req, res) => {
+  try {
   const products = await Product.find(); 
   res.json(products);
+  } catch(error) {
+    res.status(400).json({error: err.message});
+  }
 });
 
 /*
