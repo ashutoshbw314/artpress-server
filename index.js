@@ -9,7 +9,8 @@ const app = express();
 
 const PORT = process.env.PORT || 8080;
 
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+
+mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.fvkxi.mongodb.net/${process.env.DB_NAME}`, { useNewUrlParser: true, useUnifiedTopology: true });
 
 mongoose.connection.once("open", () => {
   console.log("Mongodb connection established successfully");
