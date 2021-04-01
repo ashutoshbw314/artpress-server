@@ -29,6 +29,15 @@ router.get("/products/all", async (req, res) => {
   }
 });
 
+router.get("/products/:id", async (req, res) => {
+  try {
+  const product = await Product.findById(req.params.id); 
+  res.json(product);
+  } catch(error) {
+    res.status(400).json({error: err.message});
+  }
+});
+
 /*
 router.get("/:id", async (req, res) => {
   try {
