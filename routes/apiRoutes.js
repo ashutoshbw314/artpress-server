@@ -40,6 +40,17 @@ router.get("/products/:id", async (req, res) => {
   }
 });
 
+router.delete("/products/:id", async (req, res) => {
+  try {
+    const product = await Product.findById(req.params.id); 
+    const result = await product.remove();
+    res.json(result);
+  } catch(err) {
+    res.send("Error " + err);
+  } 
+});
+
+
 /******** The following codes handle order related requests *********/
 router.post("/orders", async (req, res) => {
   console.log(req.body)
@@ -72,31 +83,6 @@ router.get("/orders/:uid", async (req, res) => {
   }
 });
 
-/*
-router.get("/:id", async (req, res) => {
-  try {
-    const book = await Book.findById(req.params.id); 
-    res.json(book);
-  } catch(err) {
-    res.status(400).json({error: err.message});
-  } 
-});
-
-router.post("/", async (req, res) => {
-  const book = new Book({
-    name: req.body.name,
-    author: req.body.author,
-  });
-  
-  try {
-    const result = await alien.save();
-    res.json(result);
-  } catch(err) {
-    res.status(400).json({error: err.message});
-  }
-});*/
-
-
 /*router.patch("/:id", async (req, res) => {
   try {
     const alien = await Alien.findById(req.params.id); 
@@ -107,15 +93,6 @@ router.post("/", async (req, res) => {
     res.send("Error " + err);
   } 
 });
-
-router.delete("/:id", async (req, res) => {
-  try {
-    const alien = await Alien.findById(req.params.id); 
-    const a1 = await alien.remove();
-    res.json(a1);
-  } catch(err) {
-    res.send("Error " + err);
-  } 
-});*/
+*/
 
 module.exports = router;
