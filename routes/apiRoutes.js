@@ -1,7 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const Product = require("../models/Product");
+const Order = require("../models/Order");
 
+/******** The following codes handle product related requests *********/
 router.post("/product", async (req, res) => {
   console.log(req.body)
   const product = new Product({
@@ -33,6 +35,38 @@ router.get("/products/:id", async (req, res) => {
   try {
   const product = await Product.findById(req.params.id); 
   res.json(product);
+  } catch(error) {
+    res.status(400).json({error: err.message});
+  }
+});
+
+/******** The following codes handle order related requests *********/
+router.post("/orders", async (req, res) => {
+  console.log(req.body)
+  const order = new Order({
+    name: req.body.name,
+    price: req.body.price,
+    artistName: req.body.artistName,
+    imageURL: req.body.imageURL,
+    uid: req.body.uid,
+    date: new Date(req.body.date),
+    email: req.body.email
+  });
+  
+  try {
+    const result = await order.save();
+    res.json(result);
+  } catch(err) {
+    console.log(err.message)
+    res.status(400).json({error: err.message});
+  }
+});
+
+router.get("/orders/:uid", async (req, res) => {
+  try {
+    const orders = await Order.find({uid: req.params.uid}); 
+    console.log('uid is ', req.params.uid)
+    res.json(orders);
   } catch(error) {
     res.status(400).json({error: err.message});
   }
