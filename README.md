@@ -1,5 +1,5 @@
 # Artpress Server-side code(Assignment 10)
-Currently this server exposes some public api endpoints for the consumption of the site [Artpress](https://art-press.web.app/). 
+Currently this server exposes some public api endpoints for the consumption of the site ***[Artpress](https://art-press.web.app/)***. 
 
 See the client side code by clicking [here](https://github.com/Porgramming-Hero-web-course/full-stack-client-ashutoshbw314).
 
